@@ -1,0 +1,27 @@
+{
+  "name": "401-data-structures-and-algorithms",
+  "version": "1.0.0",
+  "description": "Code Challenges 401",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose --coverage",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json",
+    "lint": "eslint ./**/*.js --fix",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcarmichael22/401-data-structures-and-algorithms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pcarmichael22/401-data-structures-and-algorithms/issues"
+  },
+  "homepage": "https://github.com/pcarmichael22/401-data-structures-and-algorithms#readme",
+  "dependencies": {
+    "eslint": "^6.5.1",
+    "jest": "^24.9.0"
+  }
+}
