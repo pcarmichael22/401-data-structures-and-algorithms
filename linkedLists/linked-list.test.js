@@ -1,5 +1,6 @@
 let linkedList = require('./linked-list');
 let newLinkedList = new linkedList();
+let test10LinkedList = new linkedList();
 
 /////////////// TESTS ///////////////////////////
 
@@ -49,3 +50,34 @@ describe('Test Challenge 6', () => {
         expect(newLinkedList.head.next.next.next.next.next.next.value).toBe(21);
     });
   });
+
+describe('Test Challenge 7', () => {
+  test('Where input is greater than the length of the linked list', () => {
+      expect(newLinkedList.valueFromEnd(1000)).toBe('exception')
+  });
+});
+
+describe('Test Challenge 8', () => {
+  test('Where input and the length of the list are the same', () => {
+      expect(newLinkedList.valueFromEnd(13)).toBe(12)
+  });
+});
+
+describe('Test Challenge 9', () => {
+  test('Where input is not a positive integer', () => {
+    expect(newLinkedList.valueFromEnd(-5)).toBe('exception')
+  });
+});
+
+describe('Test Challenge 10', () => {
+  test('Where the linked list is of a size 1', () => {
+      test10LinkedList.append(1);
+      expect(test10LinkedList.valueFromEnd(1)).toBe(1)
+  });
+});
+
+describe('Test Challenge 11', () => {
+  test('“Happy Path” where input is not at the end, but somewhere in the middle of the linked list', () => {
+    expect(newLinkedList.valueFromEnd(7)).toBe(17)
+  });
+});

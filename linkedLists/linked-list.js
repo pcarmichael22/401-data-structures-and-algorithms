@@ -1,31 +1,32 @@
-
 class Node {
-    constructor(value){
+    constructor(value) {
         this.value = value;
         this.next = null;
     }
 }
 
 class LinkedList {
-    constructor(){
+    constructor() {
         this.head = null;
         this.size = 0;
     }
-    append(value){
+    append(value) {
         var node = new Node(value)
         var currentNode;
-    
-        if (!this.head){
+
+        if (!this.head) {
             this.head = node
+            this.size++;
+            return
         } else {
             currentNode = this.head;
-        
-            while (currentNode.next){
+
+            while (currentNode.next) {
                 currentNode = currentNode.next;
             }
             currentNode.next = node;
+            this.size++;
         }
-        this.size++;
     }
 
     insertBefore(value, newValue) {
@@ -33,21 +34,22 @@ class LinkedList {
         var currentNode = this.head;
         var previousNode = this.head;
 
-            if(currentNode.value === value){
-                    node.next = currentNode;
-                    this.head = node;
-                } else {
+        if (currentNode.value === value) {
+            node.next = currentNode;
+            this.head = node;
+            return;
+        }
 
-                currentNode = currentNode.next;
+        currentNode = currentNode.next;
 
-            while (currentNode){
-                    if(currentNode.value === value){
-                    previousNode.next = node;
-                    node.next = currentNode;
-                }
-                previousNode = previousNode.next;
-                currentNode = currentNode.next;
+        while (currentNode) {
+            if (currentNode.value === value) {
+                previousNode.next = node;
+                node.next = currentNode;
+                break;
             }
+            previousNode = previousNode.next;
+            currentNode = currentNode.next;
         }
     }
 
@@ -55,22 +57,45 @@ class LinkedList {
         var node = new Node(newValue)
         let currentNode = this.head;
 
-        if(currentNode.value === value) {
-          node.next = currentNode;
-          this.head = node;
-        } else {
-          currentNode = currentNode.next;
+        if (currentNode.value === value) {
+            node.next = currentNode;
+            this.head = node;
+            return;
+        } 
+
+        currentNode = currentNode.next;
+
+        while (currentNode) {
+            if (currentNode.value === value) {
+                node.next = currentNode.next;
+                currentNode.next = node;
+                break;
+            }
+            currentNode = currentNode.next;
+        }
+    }
+
+    valueFromEnd(value) {
+        let currentNode = this.head;
+        let counter = 0;
+
+        while(currentNode !== null) {
+            counter++
+            currentNode = currentNode.next;
         }
 
-        while(currentNode) {
-          if(currentNode.value === value) {
-            node.next = currentNode.next;
-            currentNode.next = node;
-          }
-          currentNode = currentNode.next;
+        if(counter < value || value < 0){
+            return 'exception'
         }
-      }
+        
+        currentNode = this.head;
+        let targetCounter = counter - value;
 
+        for(let i = 1; i < targetCounter; i++) {
+            currentNode = currentNode.next;
+        }
+        return currentNode.value
+    }
 }
 
 
@@ -78,6 +103,7 @@ class LinkedList {
 const linkedlist = new LinkedList();
 linkedlist.head = new Node(2);
 linkedlist.head.next = new Node(3);
+
 
 // linkedlist.append(4);
 // console.log('Appending a 4th Node',JSON.stringify(linkedlist));
@@ -87,5 +113,8 @@ linkedlist.head.next = new Node(3);
 // console.log('Inserting Before 3, with a value of 6',JSON.stringify(linkedlist));
 // linkedlist.insertAfter(6,4);
 // console.log('Inswerting After 6, with a value of 4',JSON.stringify(linkedlist));
+
+linkedlist.valueFromEnd();
+
 
 module.exports = LinkedList;
