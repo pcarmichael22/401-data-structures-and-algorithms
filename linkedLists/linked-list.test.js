@@ -1,6 +1,22 @@
-let linkedList = require('./linked-list');
+let linkedList = require('./linked-list').linkedList;
+let Node = require('./linked-list').node;
 let newLinkedList = new linkedList();
 let test10LinkedList = new linkedList();
+
+
+
+const linkedlist3 = new linkedList();
+const linkedlist4 = new linkedList();
+
+linkedlist3.head = new Node(2);
+linkedlist3.head.next = new Node(3);
+linkedlist3.head.next.next = new Node(4);
+linkedlist3.head.next.next.next = new Node(5);
+
+linkedlist4.head = new Node(6);
+linkedlist4.head.next = new Node(7);
+linkedlist4.head.next.next = new Node(8);
+linkedlist4.head.next.next.next = new Node(9);
 
 /////////////// TESTS ///////////////////////////
 
@@ -59,7 +75,7 @@ describe('Test Challenge 7', () => {
 
 describe('Test Challenge 8', () => {
   test('Where input and the length of the list are the same', () => {
-      expect(newLinkedList.valueFromEnd(13)).toBe(12)
+      expect(newLinkedList.valueFromEnd(13)).toBe('exception')
   });
 });
 
@@ -72,7 +88,7 @@ describe('Test Challenge 9', () => {
 describe('Test Challenge 10', () => {
   test('Where the linked list is of a size 1', () => {
       test10LinkedList.append(1);
-      expect(test10LinkedList.valueFromEnd(1)).toBe(1)
+      expect(test10LinkedList.valueFromEnd(1)).toBe('exception')
   });
 });
 
@@ -81,3 +97,10 @@ describe('Test Challenge 11', () => {
     expect(newLinkedList.valueFromEnd(7)).toBe(17)
   });
 });
+
+describe('Test Challenge 12', () => {
+  test('This will return a zipped list when given two lists', () => {
+      linkedlist3.mergeLists(linkedlist4);
+      expect(linkedlist3.head.next.value).toEqual(6);
+  })
+})

@@ -10,6 +10,9 @@ Write the following methods for the Linked List class:
 .insertBefore(value, newVal) which add a new node with the given newValue immediately before the first value node
 .insertAfter(value, newVal) which add a new node with the given newValue immediately after the first value node
 
+
+Write a function called mergeLists which takes two linked lists as arguments. Zip the two linked lists together into one so that the nodes alternate between the two lists and return a reference to the head of the zipped list. Try and keep additional space down to O(1). You have access to the Node class and all the properties on the Linked List class as well as the methods created in previous challenges.
+
 ## Challenge Description
 Can successfully add a node to the end of the linked list
 Can successfully add multiple nodes to the end of a linked list
@@ -23,6 +26,8 @@ Where k and the length of the list are the same
 Where k is not a positive integer
 Where the linked list is of a size 1
 “Happy Path” where k is not at the end, but somewhere in the middle of the linked list
+
+
 
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
