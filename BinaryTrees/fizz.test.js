@@ -17,7 +17,7 @@ describe('Can change the value of an Binary node', () => {
 
         newTree.BuzzFizz(newTree.root)
 
-        expect(newTree.root.value).toEqual('FizzBuzz');
+        expect(newTree.root.value).toEqual('150');
     })
 })
 
