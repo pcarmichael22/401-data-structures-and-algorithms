@@ -18,13 +18,11 @@ class Node {
   }
 }
 
-
 // Created with Sarah from lecture yesterday with Amanda.
 
 class BinarySearchTree extends BinaryTree {
-
-  add(value){
-    if(this.root === null) {
+  add(value) {
+    if (this.root === null) {
       this.root = new Node(value);
       return;
     }
@@ -32,9 +30,8 @@ class BinarySearchTree extends BinaryTree {
   }
 
   _addForNode(value, parentNode) {
-  
-    if(value > parentNode.value){
-      if(parentNode.right === null) {
+    if (value > parentNode.value) {
+      if (parentNode.right === null) {
         parentNode.right = new Node(value);
         return;
       } else {
@@ -42,8 +39,8 @@ class BinarySearchTree extends BinaryTree {
         return;
       }
     }
-    if(value <= parentNode.value){
-      if(parentNode.left === null) {
+    if (value <= parentNode.value) {
+      if (parentNode.left === null) {
         parentNode.left = new Node(value);
         return;
       } else {
@@ -52,10 +49,41 @@ class BinarySearchTree extends BinaryTree {
     }
   }
 
+  weightOfLeaves(tree, target) {
+    let counter;
+    traverse(tree, counter);
+    function traverse(node, counter) {
+      if (!node.left && counter === target) {
+        return true;
+      }
+      if (!node.right && counter === target) {
+        return true;
+      }
+      if (node.left) {
+        counter += node.value;
+        let current = node.left;
+        traverse(current, counter);
+      }
+      if (node.right) {
+        counter += node.value;
+        let current = node.right;
+        traverse(current, counter);
+      }
+      if (!node.left && !node.right) {
+        if (counter === target) {
+          console.log(true);
+          return true;
+        } else {
+          console.log(false);
+          return false;
+        }
+      }
+    }
+  }
+
   // METHOD FOR CODE CHALLENGE 16
 
-
-  BuzzFizz(tree){
+  BuzzFizz(tree) {
     if (tree.root == null) {
       return;
     }
@@ -72,7 +100,7 @@ function traverse(node) {
   if (node === null) {
     return;
   }
-  if(node.value % 3 === 0 && node.value %5 === 0){
+  if (node.value % 3 === 0 && node.value % 5 === 0) {
     node.value = 'fizzbuzz';
   } else if (node.value % 3 === 0) {
     node.value = 'fizz';
@@ -83,3 +111,41 @@ function traverse(node) {
   traverse(node.left);
   traverse(node.right);
 }
+
+function weightOfLeaves(tree, target) {
+  let counter;
+  traverse(tree, counter);
+  function traverse(node, counter) {
+    if (node.left) {
+      counter += node.value;
+      let current = node.left;
+      traverse(current, counter);
+    }
+    if (node.right) {
+      counter += node.value;
+      let current = node.right;
+      traverse(current, counter);
+    }
+    if (!node.left && !node.right) {
+      if (counter === target) {
+        console.log('true');
+        return true;
+      } else {
+        console.log('false');
+        return false;
+      }
+    }
+  }
+}
+
+let newTree = new BinarySearchTree();
+newTree.add(150);
+newTree.add(14);
+newTree.add(33);
+newTree.add(30);
+newTree.add(15);
+newTree.add(20);
+newTree.add(2);
+newTree.add(3);
+
+newTree.weightOfLeaves(newTree, 30);
